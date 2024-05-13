@@ -26,10 +26,34 @@ function getTotalSupply() {
   return nftCollection.length;
 }
 
-// Call your functions below this line
-mintNFT('NFT 1', 'This is NFT 1', 'https://example.com/nft1.png');
-mintNFT('NFT 2', 'This is NFT 2', 'https://example.com/nft2.png');
-mintNFT('NFT 3', 'This is NFT 3', 'https://example.com/nft3.png');
+// Make minting NFTs user input
+function promptUserForNFT() {
+  const name = prompt('Enter NFT name:');
+  const description = prompt('Enter NFT description:');
+  const image = prompt('Enter NFT image URL:');
+  mintNFT(name, description, image);
+}
 
-listNFTs();
-console.log(`Total Supply: ${getTotalSupply()}`);
+// Call your functions below this line
+while (true) {
+  console.log('1. Mint an NFT');
+  console.log('2. List all NFTs');
+  console.log('3. Get total supply');
+  console.log('4. Exit');
+  const choice = prompt('Choose an option:');
+  switch (choice) {
+    case '1':
+      promptUserForNFT();
+      break;
+    case '2':
+      listNFTs();
+      break;
+    case '3':
+      console.log(`Total Supply: ${getTotalSupply()}`);
+      break;
+    case '4':
+      return;
+    default:
+      console.log('Invalid option. Please try again.');
+  }
+}
